@@ -16,7 +16,8 @@ import {
   RotateCcw,
   Bookmark,
   Trophy,
-  Award
+  Award,
+  Target
 } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { useProgress } from '@/context/ProgressContext';
@@ -206,6 +207,16 @@ export default function ModuleRoadmap() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2 self-end md:self-auto shrink-0">
+            {/* View Proficiency Radar Button */}
+            <a
+              href="#proficiency-radar"
+              className="px-3.5 py-2 rounded-xl bg-cyan-950/60 hover:bg-cyan-900/60 border border-cyan-500/40 text-cyan-300 font-semibold text-xs transition-all shadow-sm flex items-center gap-1.5 active:scale-98"
+              title={isBn ? '৬টি সাইবার ডোমেন পারদর্শিতা রাডার চার্ট দেখুন' : 'View 6-Domain Cyber Defense Radar'}
+            >
+              <Target className="w-3.5 h-3.5 text-cyan-400" />
+              <span>{isBn ? 'দক্ষতা রাডার' : 'Defense Radar'}</span>
+            </a>
+
             {/* View Leaderboard Button */}
             <button
               onClick={() => setIsLeaderboardModalOpen(true)}

@@ -12,7 +12,8 @@ import {
   Award, 
   Trophy, 
   Lock,
-  ShieldCheck
+  ShieldCheck,
+  Search
 } from 'lucide-react';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { useLanguage } from '@/context/LanguageContext';
@@ -33,6 +34,7 @@ export default function Header() {
     isAllModulesCompleted,
     setIsCertificateModalOpen,
     setIsLeaderboardModalOpen,
+    setIsSearchOpen,
   } = useProgress();
 
   const {
@@ -80,6 +82,9 @@ export default function Header() {
           <a href="#roadmap" className="hover:text-emerald-400 transition-colors whitespace-nowrap shrink-0">
             {isBn ? '১৩ মডিউল' : '13 Modules'}
           </a>
+          <a href="#proficiency-radar" className="hover:text-emerald-400 text-emerald-400/90 font-medium transition-colors whitespace-nowrap shrink-0 flex items-center gap-1">
+            <span>{isBn ? 'দক্ষতা রাডার' : 'Defense Radar'}</span>
+          </a>
           <a href="#simulator" className="hover:text-emerald-400 transition-colors whitespace-nowrap shrink-0">
             {isBn ? 'সিমুলেটর' : 'Simulators'}
           </a>
@@ -96,7 +101,24 @@ export default function Header() {
         </nav>
 
         {/* Zone 3: Essential Controls & Elevated Administrator Portal */}
-        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          {/* Global Search Button with ⌘K Badge */}
+          <button
+            onClick={() => setIsSearchOpen(true)}
+            type="button"
+            className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-2.5 py-1.5 text-xs font-medium rounded-lg bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 hover:border-emerald-500/60 text-slate-300 hover:text-white transition-all shadow-sm active:scale-95 group"
+            title={isBn ? 'মডিউল বা সাইবার টার্ম খুঁজুন (⌘K / Ctrl+K)' : 'Search modules or cyber terms (⌘K / Ctrl+K)'}
+            aria-label={isBn ? 'অনুসন্ধান করুন' : 'Search campaign'}
+          >
+            <Search className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
+            <span className="hidden md:inline text-slate-400 group-hover:text-slate-200">
+              {isBn ? 'অনুসন্ধান...' : 'Search...'}
+            </span>
+            <kbd className="hidden lg:inline-flex items-center gap-0.5 text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400">
+              <span>⌘K</span>
+            </kbd>
+          </button>
+
           {/* Resume Journey Quick Button if available */}
           {lastVisitedModule && (
             <button
@@ -199,6 +221,24 @@ export default function Header() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-5 space-y-2.5 text-sm">
+          {/* Mobile Global Search Button */}
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setIsSearchOpen(true);
+            }}
+            className="w-full flex items-center justify-between p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-emerald-500/60 text-slate-300 hover:text-white text-xs font-medium transition-all group"
+          >
+            <div className="flex items-center gap-2">
+              <Search className="w-3.5 h-3.5 text-emerald-400" />
+              <span>{isBn ? 'মডিউল বা সাইবার টার্ম অনুসন্ধান...' : 'Search modules or cyber terms...'}</span>
+            </div>
+            <kbd className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-800 border border-slate-700 text-slate-400">
+              ⌘K
+            </kbd>
+          </button>
+
           <div className="pb-2 border-b border-slate-800 flex items-center justify-between text-xs text-slate-400">
             <span>{isBn ? 'কারিকুলাম অগ্রগতি:' : 'Curriculum Progress:'}</span>
             <span className="text-emerald-400 font-mono font-bold">
@@ -221,6 +261,13 @@ export default function Header() {
               className="p-2 rounded-lg bg-slate-950/60 border border-slate-800 text-slate-300 hover:text-white"
             >
               {isBn ? '১৩টি মডিউল' : '13 Modules'}
+            </a>
+            <a
+              href="#proficiency-radar"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 rounded-lg bg-emerald-950/40 border border-emerald-500/40 text-emerald-300 hover:text-white font-medium"
+            >
+              {isBn ? '🎯 দক্ষতা রাডার' : '🎯 Defense Radar'}
             </a>
             <a
               href="#simulator"

@@ -254,6 +254,15 @@ interface ProgressContextType {
   // Leaderboard Modal
   isLeaderboardModalOpen: boolean;
   setIsLeaderboardModalOpen: (open: boolean) => void;
+
+  // Cyber Hygiene Recommendations Modal
+  isHygieneModalOpen: boolean;
+  setIsHygieneModalOpen: (open: boolean) => void;
+
+  // Global Campaign Search Modal
+  isSearchOpen: boolean;
+  setIsSearchOpen: (open: boolean) => void;
+  toggleSearch: () => void;
 }
 
 const ProgressContext = createContext<ProgressContextType>({
@@ -274,7 +283,6 @@ const ProgressContext = createContext<ProgressContextType>({
   totalCount: MODULE_LIST.length,
   progressPercentage: 0,
   getNextUncompletedModule: () => null,
-
   allBadges: BADGES_LIST,
   unlockedBadgeIds: [],
   unlockedBadges: [],
@@ -284,16 +292,19 @@ const ProgressContext = createContext<ProgressContextType>({
   dismissBadgeNotification: () => {},
   isBadgesModalOpen: false,
   setIsBadgesModalOpen: () => {},
-
   userName: 'সাইবার চ্যাম্পিয়ন',
   setUserName: () => {},
   isCertificateModalOpen: false,
   setIsCertificateModalOpen: () => {},
   isAllModulesCompleted: false,
   completeAllModulesDemo: () => {},
-
   isLeaderboardModalOpen: false,
   setIsLeaderboardModalOpen: () => {},
+  isHygieneModalOpen: false,
+  setIsHygieneModalOpen: () => {},
+  isSearchOpen: false,
+  setIsSearchOpen: () => {},
+  toggleSearch: () => {},
 });
 
 export function ProgressProvider({ children }: { children: React.ReactNode }) {
@@ -311,6 +322,12 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
   const [userName, setUserNameState] = useState<string>('সাইবার চ্যাম্পিয়ন');
   const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
   const [isLeaderboardModalOpen, setIsLeaderboardModalOpen] = useState(false);
+  const [isHygieneModalOpen, setIsHygieneModalOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const toggleSearch = useCallback(() => {
+    setIsSearchOpen(prev => !prev);
+  }, []);
 
   // Load saved state from localStorage on mount
   useEffect(() => {
@@ -623,6 +640,15 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
         // Leaderboard
         isLeaderboardModalOpen,
         setIsLeaderboardModalOpen,
+
+        // Cyber Hygiene Recommendations
+        isHygieneModalOpen,
+        setIsHygieneModalOpen,
+
+        // Global Search
+        isSearchOpen,
+        setIsSearchOpen,
+        toggleSearch,
       }}
     >
       {children}

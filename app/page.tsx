@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import CampaignOverview from '@/components/CampaignOverview';
 import ModuleRoadmap from '@/components/ModuleRoadmap';
+import CyberProficiencyRadar from '@/components/CyberProficiencyRadar';
 import Module0 from '@/components/Module0';
 import Module1 from '@/components/Module1';
 import Module2 from '@/components/Module2';
@@ -24,14 +25,17 @@ import Module12 from '@/components/Module12';
 import Worksheet from '@/components/Worksheet';
 import FooterContact from '@/components/FooterContact';
 import ResumeBanner from '@/components/ResumeBanner';
+import CyberTipOfTheDay from '@/components/CyberTipOfTheDay';
 import ModuleProgressFooter from '@/components/ModuleProgressFooter';
 import BadgeUnlockToast from '@/components/BadgeUnlockToast';
 import BadgesModal from '@/components/BadgesModal';
 import CertificateModal from '@/components/CertificateModal';
 import Leaderboard from '@/components/Leaderboard';
+import ResultsDashboard from '@/components/ResultsDashboard';
 import LeaderboardModal from '@/components/LeaderboardModal';
 import AdminPortalModal from '@/components/AdminPortalModal';
 import AdminAuthModal from '@/components/AdminAuthModal';
+import CyberHygieneRecommendationsModal from '@/components/CyberHygieneRecommendationsModal';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { ProgressProvider } from '@/context/ProgressContext';
 import { ThemeProvider } from '@/context/ThemeContext';
@@ -80,6 +84,9 @@ export default function HomePage() {
               {/* Floating Resume Journey Banner based on localStorage */}
               <ResumeBanner />
 
+              {/* Floating Non-Intrusive Cyber Tip of the Day Notification */}
+              <CyberTipOfTheDay variant="notification" />
+
               {/* Real-time Badge Unlock Celebration Notification */}
               <BadgeUnlockToast />
 
@@ -98,11 +105,19 @@ export default function HomePage() {
               {/* Admin Passcode Authentication Modal */}
               <AdminAuthModal />
 
+              {/* Custom Cyber-Hygiene Action Plan Modal */}
+              <CyberHygieneRecommendationsModal />
+
           {/* Main Campaign Single-Page Animated Layout */}
           <main className="flex-1 overflow-hidden">
             {/* Slides 1, 2, 8, 10, 84: Hero & Human Firewall Core */}
             <AnimatedSection delay={0.05}>
               <Hero />
+            </AnimatedSection>
+
+            {/* Daily Security Best Practice: Cyber Tip of the Day Dashboard Widget */}
+            <AnimatedSection id="daily-tip" delay={0.08} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+              <CyberTipOfTheDay variant="card" />
             </AnimatedSection>
 
             {/* Slides 3, 4, 5, 6: Campaign Overview, Mission, Disclaimer, Objectives, Rules */}
@@ -113,6 +128,16 @@ export default function HomePage() {
             {/* Slide 7: 13-Module Color Coded Roadmap */}
             <AnimatedSection id="roadmap" delay={0.1}>
               <ModuleRoadmap />
+            </AnimatedSection>
+
+            {/* Visual Summary: Cyber Defense Proficiency Radar & Domain Progress Bars */}
+            <AnimatedSection id="proficiency-radar" delay={0.1}>
+              <CyberProficiencyRadar />
+            </AnimatedSection>
+
+            {/* Comparative Benchmark Graph: User vs District vs National Average (Recharts) */}
+            <AnimatedSection id="results-dashboard" delay={0.1}>
+              <ResultsDashboard />
             </AnimatedSection>
 
             {/* Slides 8 - 13: Module 0: Welcome, 30s Icebreaker, Rafiq's Story, THINK Framework, Phone Flip */}

@@ -15,12 +15,14 @@ import {
   Share2, 
   Printer, 
   FileCheck,
-  Trophy
+  Trophy,
+  ShieldAlert,
+  ArrowRight
 } from 'lucide-react';
 import { useProgress } from '@/context/ProgressContext';
 
 export default function Module12() {
-  const { userName, setUserName, setIsCertificateModalOpen } = useProgress();
+  const { userName, setUserName, setIsCertificateModalOpen, setIsHygieneModalOpen } = useProgress();
 
   // Quiz state
   const [userAnswers, setUserAnswers] = useState<Record<number, 'safe' | 'risky' | null>>({
@@ -237,15 +239,28 @@ export default function Module12() {
           </div>
 
           {showQuizResults && (
-            <div className="mt-6 p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/80 text-center">
-              <span className="text-base sm:text-lg font-bold text-white">
-                আপনার স্কোর: ৬ এর মধ্যে {calculateScore()} টি সঠিক!
-              </span>
-              <p className="text-xs text-emerald-300 mt-1">
-                {calculateScore() === 6 
-                  ? 'অসাধারণ! আপনি একজন পূর্ণাঙ্গ সার্টিফাইড Human Firewall!' 
-                  : 'বেশ ভালো! ভুল উত্তরগুলোর ব্যাখ্যা পড়ে নিয়ে আরো প্রস্তুত থাকুন।'}
-              </p>
+            <div className="mt-6 p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/80 text-center space-y-3">
+              <div>
+                <span className="text-base sm:text-lg font-bold text-white">
+                  আপনার স্কোর: ৬ এর মধ্যে {calculateScore()} টি সঠিক!
+                </span>
+                <p className="text-xs text-emerald-300 mt-1">
+                  {calculateScore() === 6 
+                    ? 'অসাধারণ! আপনি একজন পূর্ণাঙ্গ সার্টিফাইড Human Firewall!' 
+                    : 'বেশ ভালো! দুর্বল ক্যাটাগরিগুলোর প্রস্তুতি ঝালিয়ে নিতে নিচের কাস্টম অ্যাকশন প্ল্যানটি দেখুন।'}
+                </p>
+              </div>
+
+              <div className="pt-2 border-t border-emerald-800/60 flex justify-center">
+                <button
+                  onClick={() => setIsHygieneModalOpen(true)}
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-emerald-500 hover:from-amber-400 hover:to-emerald-400 text-slate-950 font-bold text-xs flex items-center gap-2 transition-all shadow-md active:scale-98"
+                >
+                  <ShieldAlert className="w-4 h-4" />
+                  <span>কাস্টম সাইবার হাইজিন অ্যাকশন প্ল্যান দেখুন</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
           )}
 
