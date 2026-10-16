@@ -32,7 +32,7 @@ import {
   copyCertificateImageToClipboard,
   generateVerificationHash 
 } from '@/lib/certificateGenerator';
-import { getStoredCertificateLayout, CertificateLayoutConfig } from '@/lib/certificateLayout';
+import { getStoredCertificateLayout, DEFAULT_CERTIFICATE_LAYOUT, CertificateLayoutConfig } from '@/lib/certificateLayout';
 
 export default function CertificateModal() {
   const { 
@@ -57,7 +57,7 @@ export default function CertificateModal() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
   const [certificateId, setCertificateId] = useState('CSB-CHAMP-2026-88542');
-  const [currentLayout, setCurrentLayout] = useState<CertificateLayoutConfig>(getStoredCertificateLayout());
+  const [currentLayout, setCurrentLayout] = useState<CertificateLayoutConfig>(DEFAULT_CERTIFICATE_LAYOUT);
   
   const canvasContainerRef = useRef<HTMLDivElement>(null);
 

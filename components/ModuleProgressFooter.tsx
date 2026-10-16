@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import { CheckCircle2, Circle, ArrowRight, ArrowLeft, BookmarkCheck, Sparkles } from 'lucide-react';
 import { useProgress, MODULE_LIST } from '@/context/ProgressContext';
 import { useLanguage } from '@/context/LanguageContext';
+import ModuleQuiz from '@/components/ModuleQuiz';
 
 interface ModuleProgressFooterProps {
   currentModuleId: string;
@@ -44,7 +45,12 @@ export default function ModuleProgressFooter({ currentModuleId }: ModuleProgress
   };
 
   return (
-    <div className="mt-8 pt-6 border-t border-slate-800/80 bg-slate-900/40 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div className="w-full">
+      {/* Interactive Lightweight Quiz Component (3 Random Questions tailored to this module) */}
+      <ModuleQuiz moduleId={currentModule.id} />
+
+      {/* Module Completion & Navigation Bar */}
+      <div className="mt-4 pt-5 border-t border-slate-800/80 bg-slate-900/40 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
       {/* Complete toggle checkbox button */}
       <div className="flex items-center gap-3 w-full sm:w-auto">
         <button
@@ -111,5 +117,6 @@ export default function ModuleProgressFooter({ currentModuleId }: ModuleProgress
         )}
       </div>
     </div>
+  </div>
   );
 }

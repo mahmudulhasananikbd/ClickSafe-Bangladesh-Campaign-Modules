@@ -47,7 +47,7 @@ const DEFAULT_ADMIN_PASSCODE = 'clicksafe2026';
 const INITIAL_AUDIT_LOGS: SecurityAuditEntry[] = [
   {
     id: 'log-init-1',
-    timestamp: new Date().toISOString(),
+    timestamp: '2026-03-01T00:00:00.000Z',
     action: 'SYSTEM_BOOT',
     role: 'admin',
     details: 'Click Safe BD RBAC Security Engine initialized with zero-trust participant defaults.',
@@ -55,7 +55,7 @@ const INITIAL_AUDIT_LOGS: SecurityAuditEntry[] = [
   },
   {
     id: 'log-init-2',
-    timestamp: new Date().toISOString(),
+    timestamp: '2026-03-01T00:00:01.000Z',
     action: 'POLICY_ENFORCED',
     role: 'user',
     details: 'Participant mode active: Certificate layout editing restricted to Administrator role.',
